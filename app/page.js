@@ -21,10 +21,10 @@ export default function Home() {
   // ФРАЗЫ ДЛЯ КНОПКИ "НЕТ"
   const noPhrases = [
     "Нет",
-    "Ты серьезно?",
-    "Уверена?",
-    "Не делай этого!",
-    "Разбиваешь сердце! 💔",
+    "А может, да?",
+    "Кымыз ненин сутинен?",
+    "Какая погода хорошая",
+    "L.U.M.B.P",
     "Ну пожалуйста..." 
   ];
 
@@ -136,7 +136,7 @@ export default function Home() {
         {gameState === 'idle' && (
              <div className="chibi-box p-6 text-center">
                 <p className="text-xl text-brown-700 mb-4 font-fredoka">
-                    Почувствовала тепло❤️?
+                    Будешь моей валентинкой❤️?
                 </p>
                 <div className="flex gap-4 justify-center items-center flex-wrap min-h-[60px]">
                     <button onClick={startHeartGame} className="chibi-btn-primary px-6 py-3 text-lg flex items-center gap-2">
