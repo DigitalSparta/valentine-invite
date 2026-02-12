@@ -21,7 +21,7 @@ export default function Home() {
   // ФРАЗЫ ДЛЯ КНОПКИ "НЕТ"
   const noPhrases = [
     "Нет",
-    "А может да?",
+    "Ты серьезно?",
     "Уверена?",
     "Не делай этого!",
     "Разбиваешь сердце! 💔",
@@ -95,9 +95,9 @@ export default function Home() {
             
             <h2 className="text-2xl font-fredoka font-bold mb-2 text-pink-600">Свидание</h2>
             <p className="text-brown-600 mb-6 font-nunito">
-                Встретимся в нашей игре! Напиши во сколько тебе будет удобно в 14 февраля на онлайн свидание в игре.
+                Встретимся в нашей игре!
             </p>
-            <a href="https://wa.me/87066842110" className="chibi-btn-primary w-full py-3 text-lg flex justify-center items-center gap-2 no-underline">
+            <a href="https://wa.me/77000000000" className="chibi-btn-primary w-full py-3 text-lg flex justify-center items-center gap-2 no-underline">
                 <Gift size={20}/> Написать мне
             </a>
         </div>
@@ -136,7 +136,7 @@ export default function Home() {
         {gameState === 'idle' && (
              <div className="chibi-box p-6 text-center">
                 <p className="text-xl text-brown-700 mb-4 font-fredoka">
-                    Почувствовала тепло❤️?
+                    Почувствовала тепло? 😻
                 </p>
                 <div className="flex gap-4 justify-center items-center flex-wrap min-h-[60px]">
                     <button onClick={startHeartGame} className="chibi-btn-primary px-6 py-3 text-lg flex items-center gap-2">
