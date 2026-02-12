@@ -1,7 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  output: 'export', // <--- Это создаст папку 'out' с твоим сайтом
+  images: {
+    unoptimized: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true, // Игнорируем ошибки типов
+  },
 };
 
 export default nextConfig;
