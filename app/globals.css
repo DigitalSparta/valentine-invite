@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background: #ffe4e6; /* Нежно-розовый фон */
+  overflow-x: hidden;
+}
+
+/* Красивый шрифт для книги можно подключить через Google Fonts в layout.js, но пока стандартный */
+.handwritten {
+  font-family: 'Brush Script MT', cursive;
+}
