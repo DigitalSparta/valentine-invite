@@ -3,31 +3,31 @@ import React, { forwardRef, useRef } from 'react';
 import HTMLFlipBook from 'react-pageflip';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-// --- НАСТРОЙКИ ---
-// Просто перечисли здесь номера страниц, где должно быть ВИДЕО.
-// Например: [2, 5, 8] означает, что на страницах 2, 5 и 8 будут видео (video2.mp4, video5.mp4...),
-// а на остальных - фото (photo1.jpg, photo3.jpg...).
-const pagesWithVideos = [5, 10, 15, 20 ]; 
+// --- НАСТРОЙКИ ВИДЕО ---
+// Впиши сюда номера файлов, которые являются ВИДЕО.
+// Например: [5, 12] значит, что video5.mp4 и video12.mp4 будут видео, а остальные - фото.
+const videosConfig = [5, 10, 15, 20]; 
 
 const Page = forwardRef((props, ref) => {
-  // Функция для отрисовки контента (Сама решает, фото или видео)
+  
+  // Функция, которая выбирает, показывать фото или видео
   const renderMedia = (pageIndex) => {
-    // Номер медиа-файла (для photo1, photo2...)
-    // Т.к. на одной странице книги 2 слота, вычисляем ID для каждого
+    // Вычисляем номер файла (1, 2, 3... 32)
     const mediaId = props.mediaOffset + pageIndex; 
     
     // Проверяем, есть ли этот номер в списке видео
-    const isVideo = pagesWithVideos.includes(mediaId);
+    const isVideo = videosConfig.includes(mediaId);
 
     if (isVideo) {
       return (
         <video controls playsInline className="w-full h-full object-contain rounded-lg bg-black/5">
+            {/* Код сам подставит video + номер */}
             <source src={`/images/video${mediaId}.mp4`} type="video/mp4" />
         </video>
       );
     }
     
-    // Иначе возвращаем фото
+    // Если не видео, то фото
     return (
         <img 
             src={`/images/photo${mediaId}.jpg`} 
@@ -42,10 +42,10 @@ const Page = forwardRef((props, ref) => {
     <div className="demoPage bg-[#fffdf7] border-r border-pink-100 shadow-inner p-2 sm:p-4 h-full" ref={ref}>
         <div className="h-full flex flex-col justify-between rounded-xl relative border-2 border-dashed border-pink-200/50 p-1">
             
-            {/* ВЕРХНИЙ БЛОК (Слот 1) */}
+            {/* ВЕРХНИЙ БЛОК */}
             <div className="flex flex-col items-center gap-1 h-[48%] z-10">
                 <div className="w-full h-full flex-1 chibi-frame bg-pink-50/50 flex items-center justify-center p-1">
-                    {renderMedia(0)} {/* 0 - это первый слот на странице */}
+                    {renderMedia(0)}
                 </div>
                 <p className="font-nunito text-[10px] sm:text-xs text-brown-700 text-center italic w-full bg-yellow-100/80 p-1 rounded shadow-sm leading-tight min-h-[20px] flex items-center justify-center">
                     {props.text1}
@@ -55,13 +55,13 @@ const Page = forwardRef((props, ref) => {
             {/* Номер страницы */}
             <div className="text-center text-pink-300 text-[10px] font-bold">~ {props.number} ~</div>
 
-            {/* НИЖНИЙ БЛОК (Слот 2) */}
+            {/* НИЖНИЙ БЛОК */}
             <div className="flex flex-col items-center gap-1 h-[48%] justify-end z-10">
                  <p className="font-nunito text-[10px] sm:text-xs text-brown-700 text-center italic w-full bg-blue-100/80 p-1 rounded shadow-sm leading-tight min-h-[20px] flex items-center justify-center">
                     {props.text2}
                 </p>
                 <div className="w-full h-full flex-1 chibi-frame bg-blue-50/50 flex items-center justify-center p-1">
-                     {renderMedia(1)} {/* 1 - это второй слот на странице */}
+                     {renderMedia(1)}
                 </div>
             </div>
         </div>
@@ -77,14 +77,11 @@ export default function Book() {
     const prevFlip = () => bookRef.current.pageFlip().flipPrev();
 
     // ГЕНЕРАЦИЯ СТРАНИЦ
-    // Здесь мы создаем 10 страниц. 
-    // На каждой странице по 2 фото/видео.
-    // Итого: 20 файлов (photo1...photo20 или videoX).
-    const pagesData = Array.from({ length: 10 }).map((_, i) => ({
-        // mediaOffset нужен, чтобы считать номера файлов (1-2, 3-4, 5-6...)
-        mediaOffset: i * 2 + 1, 
-        text1: `Момент №${i * 2 + 1}`,
-        text2: `Момент №${i * 2 + 2}`
+    // Ставим 16 страниц, чтобы вместить 32 фотографии (16 * 2 = 32)
+    const pagesData = Array.from({ length: 16 }).map((_, i) => ({
+        mediaOffset: i * 2 + 1, // Считает ID: 1, 3, 5...
+        text1: `История №${i * 2 + 1}`,
+        text2: `История №${i * 2 + 2}`
     }));
 
     return (
@@ -115,12 +112,12 @@ export default function Book() {
 
                     {/* ЗАДНЯЯ ОБЛОЖКА */}
                     <div className="bg-gradient-to-bl from-pink-400 to-red-400 text-white flex items-center justify-center h-full font-bold text-2xl text-center p-6 border-l-4 border-pink-300">
-                        Люблю тебя ❤️
+                        Я люблю тебя ❤️<br/>Бесконечно
                     </div>
                 </HTMLFlipBook>
             </div>
 
-            {/* СТРЕЛКИ */}
+            {/* КНОПКИ ЛИСТАНИЯ */}
             <div className="flex gap-12 mt-4 z-20">
                 <button onClick={prevFlip} className="bg-white/90 text-pink-500 p-4 rounded-full shadow-xl hover:scale-110 active:scale-95 transition border-4 border-pink-200">
                     <ChevronLeft size={32} />
