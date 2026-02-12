@@ -95,7 +95,7 @@ export default function Home() {
             
             <h2 className="text-2xl font-fredoka font-bold mb-2 text-pink-600">Свидание</h2>
             <p className="text-brown-600 mb-6 font-nunito">
-                Встретимся в нашей игре!
+                Встретимся в нашей игре! Напиши во сколько тебе будет удобно в 14 февраля на онлайн свидание в игре.
             </p>
             <a href="https://wa.me/87066842110" className="chibi-btn-primary w-full py-3 text-lg flex justify-center items-center gap-2 no-underline">
                 <Gift size={20}/> Написать мне
