@@ -7,7 +7,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 // Просто перечисли здесь номера страниц, где должно быть ВИДЕО.
 // Например: [2, 5, 8] означает, что на страницах 2, 5 и 8 будут видео (video2.mp4, video5.mp4...),
 // а на остальных - фото (photo1.jpg, photo3.jpg...).
-const pagesWithVideos = [2, 5, 8]; 
+const pagesWithVideos = [5, 10, 15, 20 ]; 
 
 const Page = forwardRef((props, ref) => {
   // Функция для отрисовки контента (Сама решает, фото или видео)
