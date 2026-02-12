@@ -1,13 +1,95 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-body {
-  background: #ffe4e6; /* Нежно-розовый фон */
-  overflow-x: hidden;
+/* --- CHIBI ТЕМА --- */
+@theme {
+  --color-chibi-pink: #ffc8dd;
+  --color-chibi-peach: #ffadad;
+  --color-chibi-mint: #caffbf;
+  --color-chibi-blue: #a0c4ff;
+  --color-chibi-cream: #fffdf7;
+  --color-chibi-text: #5d4037;
+  
+  --font-fredoka: var(--font-fredoka);
+  --font-nunito: var(--font-nunito);
 }
 
-/* Красивый шрифт для книги можно подключить через Google Fonts в layout.js, но пока стандартный */
-.handwritten {
-  font-family: 'Brush Script MT', cursive;
+body {
+  color: #5d4037; /* var(--chibi-text) */
+  background-color: #fff0f5; 
+  background-image: radial-gradient(#ffc8dd 2px, transparent 2px), radial-gradient(#a0c4ff 1px, transparent 1px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+  overflow-x: hidden;
+  font-family: var(--font-nunito), sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-fredoka), cursive;
+}
+
+/* Классы для Chibi-элементов */
+
+/* Мягкий "облачный" контейнер */
+.chibi-box {
+  background-color: rgba(255, 255, 255, 0.9); /* Заменили bg-white/90 на обычный CSS */
+  backdrop-filter: blur(4px); /* backdrop-blur-sm */
+  border-radius: 2rem;
+  border: 4px solid #fbcfe8; /* border-pink-200 */
+  box-shadow: 0 8px 0 rgba(255, 192, 203, 0.5), 0 15px 20px rgba(255, 192, 203, 0.3);
+}
+
+/* Пухлая кнопка */
+.chibi-btn {
+  border-radius: 9999px; /* rounded-full */
+  font-weight: 700;
+  transition: all 0.3s;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  font-family: var(--font-fredoka), cursive;
+}
+.chibi-btn:active {
+  transform: scale(0.95) translateY(4px);
+}
+
+.chibi-btn-primary {
+  /* @apply заменяем на обычные классы в HTML или здесь */
+  background: linear-gradient(to right, #f472b6, #f87171);
+  color: white;
+  border-bottom: 4px solid #ef4444;
+}
+.chibi-btn-primary:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.chibi-btn-secondary {
+  background-color: #d1d5db;
+  color: #4b5563;
+  border-bottom: 4px solid #9ca3af;
+}
+.chibi-btn-secondary:hover {
+  background-color: #9ca3af;
+  color: white;
+}
+
+/* Милая рамка для фото */
+.chibi-frame {
+    border-radius: 1rem;
+    border: 6px solid #fbcfe8;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+/* Скотч */
+.chibi-frame::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 30px;
+    height: 10px;
+    background: #caffbf; /* mint */
+    transform: rotate(45deg);
+    opacity: 0.7;
+    pointer-events: none;
 }
